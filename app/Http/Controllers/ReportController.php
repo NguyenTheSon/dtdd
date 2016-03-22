@@ -19,17 +19,22 @@ class ReportController extends Controller {
     }
 
     public function tonKho() {
-
+        $tonkho = \App\SanPham::select()->where('soluong', '>', 0)->get()->toArray();
         return view('admin.thongke.tonkho');
     }
 
     public function doanhThu() {
-
+        $doanhThu = CTHoaDon::select(DB::raw('sum(soluong*dongia) AS total'), DB::raw('DATE(created_at) as date'))->groupBy(date)->get()->toArray();
         return view('admin.thongke.doanhthu');
     }
 
     public function tungHang() {
-
+        $tungHang = DB::table('loaisp')
+                        ->join('sanpham', 'sanpham.maloai', '=', 'loaisp.id')
+                        ->join('ct_hoadon', 'ct_hoadon.masp', '=', 'sanpham.id')
+                        ->select(DB::raw(sum('ct_hoadon.soluong as total')), 'loaisp.name')//whre  ngay nua la ok
+                        ->groupBy('loaisp.name')
+                        ->get()->toArray();
         return view('admin.thongke.tunghang');
     }
 

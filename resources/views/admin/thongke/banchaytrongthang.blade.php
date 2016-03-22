@@ -1,6 +1,19 @@
-@extends('admin.master')    
+@extends('admin.thongke')    
 @section('title','Sản phẩm bán chạy')
+@section('css')
+@endsection
 @section('content')
+
+
+
+
+
+
+
+
+
+
+
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -14,9 +27,9 @@
                 <h3>Bán chạy trong ngày
                 </h3>
             </div>
-             <br/>
-              <br/>
-               <br/>
+            <br/>
+            <br/>
+            <br/>
             <div class="col-lg-12">
                 <img src="http://localhost:81/report/public/report/ban-chay" alt=""/>
                 <h3>Bán chạy trong 3 ngày

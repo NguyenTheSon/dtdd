@@ -16,9 +16,13 @@
         <!-- Custom Fonts -->
         <link href="{!! URL('public/admin/bower_components/font-awesome/css/font-awesome.min.css')!!}" rel="stylesheet" type="text/css">
 
-        @yield('css')
-        @yield('jflot')
+        <!-- DataTables CSS -->
+        <link href="{!! URL('public/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}" rel="stylesheet">
 
+        <!-- DataTables Responsive CSS -->
+        <link href="{!! URL('public/admin/bower_components/datatables-responsive/css/dataTables.responsive.css')!!}" rel="stylesheet">
+        <script src="{!! URL('public/admin/bower_components/jquery/dist/jquery.min.js')!!}"></script>
+        @yield('css')
     </head>
 
     <body>
@@ -187,17 +191,15 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="{!! URL('public/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')!!}"></script>
-
         <!-- Metis Menu Plugin JavaScript -->
         <script src="{!! URL('public/admin/bower_components/metisMenu/dist/metisMenu.min.js')!!}"></script>
-
         <!-- Custom Theme JavaScript -->
         <script src="{!! URL('public/admin/dist/js/sb-admin-2.js')!!}"></script>
-
+        <!-- DataTables JavaScript -->
+        <script src="{!! URL('public/admin/bower_components/DataTables/media/js/jquery.dataTables.min.js')!!}"></script>
+        <script src="{!! URL('public/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')!!}"></script>
         <script src="{!! URL('public/admin/js/myscrip.js')!!}"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-
+        @yield('js')
     </body>
 
 </html>

@@ -12,12 +12,19 @@ use App\AnhSP;
 use File;
 use Request;
 use Input;
+use DB;
+
 //use Requests;
 
 class ProductController extends Controller {
 
     public function getList() {
-        $products = SanPham::select()->get()->toArray();
+        $product = DB::table('sanpham')
+                        ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
+                        ->select('sanpham.*', 'loaisp.name')
+                        ->get();
+        $products =  (array) $product;
+   
         return view('admin.product.list', compact('products'));
     }
 
@@ -27,27 +34,27 @@ class ProductController extends Controller {
     }
 
     public function postAdd(ProductRequest $request) {
-        $file = $request->file('FanhSP')->getClientOriginalName();
-        $fileName = time() . $file;
-        $product = new SanPham();
-        $product->name = $request->txtTenSP;
-        $product->gia = $request->txtGiaBan;
-        $product->baohanh = $request->txtThoiGianBH;
-        $product->sanxuat = $request->txtXuatSu;
-        $product->mau = $request->txtMau;
-        $product->soluong = 0;
-        $product->anh = $fileName;
+        $file                = $request->file('FanhSP')->getClientOriginalName();
+        $fileName            = time() . $file;
+        $product             = new SanPham();
+        $product->name       = $request->txtTenSP;
+        $product->gia        = $request->txtGiaBan;
+        $product->baohanh    = $request->txtThoiGianBH;
+        $product->sanxuat    = $request->txtXuatSu;
+        $product->mau        = $request->txtMau;
+        $product->soluong    = 0;
+        $product->anh        = $fileName;
         $product->trang_thai = $request->txtTrangThai;
-        $product->maloai = $request->select_masp;
+        $product->maloai     = $request->select_masp;
         $request->file('FanhSP')->move('resources/upload/', $fileName);
         $product->save();
-        $id = $product->id;
+        $id                  = $product->id;
         if (Input::hasFile('fProduct')) {
             foreach (Input::file('fProduct') as $file) {
                 $img = new AnhSP();
                 if (isset($file)) {
-                    $name = time() . $file->getClientOriginalName();
-                    $img->anh = $name;
+                    $name             = time() . $file->getClientOriginalName();
+                    $img->anh         = $name;
                     $img->san_pham_id = $id;
                     $file->move('resources/upload/detail/', $name);
                     $img->save();
@@ -71,41 +78,41 @@ class ProductController extends Controller {
     }
 
     public function getEdit($id) {
-        $cate = LoaiSP::select()->get()->toArray();
+        $cate    = LoaiSP::select()->get()->toArray();
         $product = SanPham::find($id);
-        $img = SanPham::find($id)->images->toArray();
+        $img     = SanPham::find($id)->images->toArray();
         return view('admin.product.edit', compact('cate', 'product', 'img'));
     }
 
     public function postEdit($id) {
-        $product = SanPham::find($id);
-        $product->name = Request::input('txtTenSP');
-        $product->gia = Request::input('txtGiaBan');
-        $product->baohanh = Request::input('txtThoiGianBH');
-        $product->sanxuat = Request::input('txtXuatSu');
-        $product->mau = Request::input('txtMau');
-        $product->soluong = $product['soluong'];
-       // $product->anh = $fileName;
+        $product             = SanPham::find($id);
+        $product->name       = Request::input('txtTenSP');
+        $product->gia        = Request::input('txtGiaBan');
+        $product->baohanh    = Request::input('txtThoiGianBH');
+        $product->sanxuat    = Request::input('txtXuatSu');
+        $product->mau        = Request::input('txtMau');
+        $product->soluong    = $product['soluong'];
+        // $product->anh = $fileName;
         $product->trang_thai = Request::input('txtTrangThai');
-        $product->maloai = Request::input('select_masp');
-        $img_curent = 'resources/upload/' . Request::input('img_current');
+        $product->maloai     = Request::input('select_masp');
+        $img_curent          = 'resources/upload/' . Request::input('img_current');
         if (!empty(Request::file("FanhSP"))) {
-            $fileName = time().Request::file('FanhSP')->getClientOriginalName();
+            $fileName     = time() . Request::file('FanhSP')->getClientOriginalName();
             $product->anh = $fileName;
             Request::file('FanhSP')->move('resources/upload/', $fileName);
             if (File::exists($img_curent)) {
                 File::delete($img_curent);
             }
         } else {
-           $product->anh =  Request::input('img_current');
+            $product->anh = Request::input('img_current');
         }
         $product->save();
         if (!empty(Request::file('fProduct'))) {
             foreach (Request::file('fProduct') as $file) {
                 if (isset($file)) {
-                    $img = new AnhSP();
-                    $fileName = time().$file->getClientOriginalName();
-                    $img->anh = $fileName;
+                    $img              = new AnhSP();
+                    $fileName         = time() . $file->getClientOriginalName();
+                    $img->anh         = $fileName;
                     $img->san_pham_id = $id;
                     $file->move('resources/upload/detail', $fileName);
                     $img->save();
@@ -118,7 +125,7 @@ class ProductController extends Controller {
     public function getDelImg($id) {
         if (Request::ajax()) {
             $idImage = (int) Request::get('idHinh');
-            $image = AnhSP::find($idImage);
+            $image   = AnhSP::find($idImage);
             //var_dump($image);
             if (!empty($image)) {
                 $img = 'resources/upload/detail/' . $image->anh;
