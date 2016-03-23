@@ -8,6 +8,7 @@ use App\SanPham;
 use App\PhuKien;
 use DB;
 use Cart;
+use NL_Checkout;
 
 class WelcomeController extends Controller {
 
@@ -35,57 +36,51 @@ class WelcomeController extends Controller {
         return view('user.pages.goiy', compact('products'));
     }
 
-    public function thanhToan() {
-        
+    public function tienHanhThanhToan(Request $request) {
+        $maHD             = \App\DatHang::max('id');
+        $receiver         = "tam94dk4@gmail.com";
+        $return_url       = "http://localhost:81/dacn/thanh-toan-thanh-cong";
+        //Giá của cả giỏ hàng 
+        $price            = Cart::total();
+        //Mã giỏ hàng 
+        $order_code       = $maHD;
+        //Thông tin giao dịch
+        $transaction_info = "Test Ban Hang";
+        //Khai báo đối tượng của lớp NL_Checkout
+        $nl               = new NL_Checkout();
+        Cart::destroy();
+        //Tạo link thanh toán đến nganluong.vn
+        $url              = $nl->buildCheckoutUrl($return_url, $receiver, $transaction_info, $order_code, $price);
+        header("refresh:1;url=$url");
     }
 
-    public function tienHanhThanhToan(Request $request) {
-        if (Cart::count() === 0) {
-            echo '<script> alert("Đặt hàng không thành công! Bạn chưa chọn sản phẩm")</script>';
-            header("refresh:1;url=http://localhost:81/dacn/home");
-        } else {
-            $now               = date('Y-m-d', time());
-            $hoaDon            = new \App\DatHang();
-            $hoaDon->ngaylap   = $now;
-            $hoaDon->manv      = 5;
-            $hoaDon->ten_kh    = $request->txtTenKhachHang;
-            $hoaDon->diachi    = $request->txtDiaChi;
-            $hoaDon->sdt       = $request->txtSoDT;
-            $hoaDon->noinhan   = $request->txtNoiNhan;
-            $hoaDon->tgnhan    = $request->txtThoiGianNhan;
-            $hoaDon->trangthai = "Thanh toan qua ngan luong";
-            $hoaDon->save();
-            $maHD              = \App\DatHang::max('id');
-            $content           = Cart::content();
-            foreach ($content as $item) {
-                $ctHoaDon          = new CTHoaDon();
-                $ctHoaDon->mahd    = $maHD;
-                $ctHoaDon->masp    = $item['id'];
-                $ctHoaDon->soluong = $item['qty'];
-                $ctHoaDon->dongia  = $item['price'];
-                $ctHoaDon->tensp   = $item['name'];
-                $ctHoaDon->save();
-                $soLuong           = SanPham::find($item['id']);
-                $soLuong->soluong  = $soLuong['soluong'] - $item['qty'];
-                $soLuong->save();
-            }
+    public function thanhToanThanhCong() {
+        //Lấy thông tin giao dịch
+        $transaction_info = $_GET["transaction_info"];
+        //Lấy mã đơn hàng 
+        $order_code       = $_GET["order_code"];
+        //Lấy tổng số tiền thanh toán tại ngân lượng 
+        $price            = $_GET["price"];
+        //Lấy mã giao dịch thanh toán tại ngân lượng
+        $payment_id       = $_GET["payment_id"];
+        //Lấy loại giao dịch tại ngân lượng (1=thanh toán ngay ,2=thanh toán tạm giữ)
+        $payment_type     = $_GET["payment_type"];
+        //Lấy thông tin chi tiết về lỗi trong quá trình giao dịch
+        $error_text       = $_GET["error_text"];
+        //Lấy mã kiểm tra tính hợp lệ của đầu vào 
+        $secure_code      = $_GET["secure_code"];
 
-            $receiver = "tam94dk4@gmail.com";
+        $nl    = new NL_Checkout();
+        $check = $nl->verifyPaymentUrl($transaction_info, $order_code, $price, $payment_id, $payment_type, $error_text, $secure_code);
+        $html  = '';
+        if ($check) {
+            $DonHang            = \App\DatHang::find($order_code);
+            $DonHang->trangthai = $payment_id;
+            $html .="<div align=\"center\">Cám ơn quý khách, quá trình thanh toán đã được hoàn tất. Chúng tôi sẽ kiểm tra và chuyển hàng sớm!</div>";
+        } else
+            $html.="Quá trình thanh toán không thành công bạn vui lòng thực hiện lại";
 
-            $return_url       = "http://localhost:81/dacn/thanh-toan";
-            //Giá của cả giỏ hàng 
-            $price            = Cart::total();
-            //Mã giỏ hàng 
-            $order_code       = $maHD;
-            //Thông tin giao dịch
-            $transaction_info = "Test Ban Hang";
-            //Khai báo đối tượng của lớp NL_Checkout
-            $nl               = new NL_Checkout();
-            Cart::destroy();
-            //Tạo link thanh toán đến nganluong.vn
-            $url              = $nl->buildCheckoutUrl($return_url, $receiver, $transaction_info, $order_code, $price);
-            return $url;
-        }
+        echo $html;
     }
 
 }

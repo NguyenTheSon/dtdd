@@ -100,9 +100,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('del/{id}', ['as' => 'admin.laphd.getDel', 'uses' => 'LapHDController@getDel']);
     });
     Route::group(['prefix' => 'thongke'], function () {
-        Route::get('ban-chay', ['as' => 'admin.thongke.banChayTrongThang', 'uses' => 'ReportController@banChayTrongThang']);
+        Route::get('ban-chay', ['as' => 'admin.thongke.banChay', 'uses' => 'ReportController@banChay']);
+        Route::get('in-b-c', ['as' => 'admin.thongke.inBanChay', 'uses' => 'ReportController@inBanChay']);
         Route::get('tung-hang', ['as' => 'admin.thongke.tungHang', 'uses' => 'ReportController@tungHang']);
+        Route::get('in-tung-hang', ['as' => 'admin.thongke.inTungHang', 'uses' => 'ReportController@inTungHang']);
         Route::get('doanh-thu', ['as' => 'admin.thongke.doanhThu', 'uses' => 'ReportController@doanhThu']);
+        Route::get('in', ['as' => 'admin.thongke.inDoanhThu', 'uses' => 'ReportController@inDoanhThu']);
         Route::get('ton-kho', ['as' => 'admin.thongke.tonKho', 'uses' => 'ReportController@tonkho']);
     });
 });
@@ -122,6 +125,8 @@ Route::get('xao-san-pham/{id}', ['as' => 'xoaSP', 'uses' => 'HomeController@xoaS
 Route::post('cap-nhat-gio-hang/{id}', ['as' => 'updateGioHang', 'uses' => 'HomeController@updateGioHang']);
 Route::post('lap-phieu-dat-hang', ['as' => 'phieuDatHang', 'uses' => 'HomeController@phieuDatHang']);
 Route::get('so-sanh', ['as' => 'getSoSanh', 'uses' => 'HomeController@getSoSanh']);
+Route::get('hinh-thuc-thanh-toan', ['as' => 'hinhThucThanhToan', 'uses' => 'HomeController@hinhThucThanhToan']);
+Route::get('thanh-toan-truc-tiep', ['as' => 'thanhToanTrucTiep', 'uses' => 'HomeController@thanhToanTrucTiep']);
 
 //wellcome controller
 Route::get('ho-tro-mua-hang', ['as' => 'hoTroMuaHang', 'uses' => 'WelcomeController@hoTroMuaHang']);
@@ -130,5 +135,4 @@ Route::get('facebook-login', ['as' => 'facebooklogin', 'uses' => 'FaceController
 Route::get('facebook-login-callbak', ['as' => 'facebooklogin', 'uses' => 'FaceController@handleProviderCallback']);
 Route::get('thanh-toan', ['as' => 'thanhToan', 'uses' => 'WelcomeController@thanhToan']);
 Route::get('tien-hanh-thanh-toan', ['as' => 'tienHanhThanhToan', 'uses' => 'WelcomeController@tienHanhThanhToan']);
-
-Route::get('tk-sanpham', ['as' => 'tkSanPham', 'uses' => 'ThongKeController@tkSanPham']);
+Route::get('thanh-toan-thanh-cong', ['as' => 'thanhToanThanhCong', 'uses' => 'WelcomeController@thanhToanThanhCong']);

@@ -109,7 +109,7 @@ class HomeController extends Controller {
     public function phieuDatHang(DatHangRequest $request) {
         if (Cart::count() === 0) {
             echo '<script> alert("Đặt hàng không thành công! Bạn chưa chọn sản phẩm")</script>';
-            header("refresh:1;url=http://localhost:81/dacn/home");
+            header("refresh:1;url=http://localhost:81/dacn/gio-hang");
         } else {
             $now               = date('Y-m-d', time());
             $hoaDon            = new \App\DatHang();
@@ -136,10 +136,19 @@ class HomeController extends Controller {
                 $soLuong->soluong  = $soLuong['soluong'] - $item['qty'];
                 $soLuong->save();
             }
-            Cart::destroy();
             echo '<script> alert("Đặt hàng thành công! chúng tỗi sẽ liên hệ với bạn!")</script>';
-            header("refresh:1;url=http://localhost:81/dacn/home");
+            header("refresh:1;url=http://localhost:81/dacn/hinh-thuc-thanh-toan");
         }
+    }
+
+    public function hinhThucThanhToan() {
+        return view('user.pages.thanhtoan');
+    }
+
+    public function thanhToanTrucTiep() {
+        Cart::destroy();
+        echo '<script> alert("Chúng tỗi sẽ liên hệ với bạn! Xin Cảm ơn")</script>';
+        header("refresh:1;url=http://localhost:81/dacn");
     }
 
 }

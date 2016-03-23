@@ -77,11 +77,7 @@
                         <label>Thời gian nhận </label>
                         <input type="date" style="height: 35px" class="form-control" id="thoiGianNhan"  name="txtThoiGianNhan" value="{!!old('txtThoiGianNhan')!!}" placeholder="Nhập tên loại sản phẩm. VD:sam sung" />
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 200px;height: 30px">Đặt hàng</button>
-
-                    <a onclick="return validate();" href="{{ route('tienHanhThanhToan') }}"> 
-                        <img id="btn_click" border="0" src="https://www.nganluong.vn/data/images/buttons/11.gif" /> 
-                    </a>
+                    <button type="submit" class="btn btn-primary" style="width: 200px;height: 30px">Đặt hàng</button>  
                 </form>
                 <div>
                 </div>
@@ -93,41 +89,5 @@
     $(function () {
         $(".alert").delay(3000).slideUp();
     });
-    $(function () {
-        $("#btn_click").click(function () {
-            $(this).closest('form').submit();
-        });
-
-    });
-
-    function validate() {
-        if ($('#tenKH').val() === '')
-        {
-            alert('Tên khách hàng không được để trống');
-            return  false;
-        }
-        if ($('#diaChi').val() === '')
-        {
-            alert('Địa chỉ không được để trống');
-            return  false;
-        }
-        if ($('#txtSoDT').val() === '')
-        {
-            alert('Số điện thoại không được để trống!');
-            return  false;
-        }
-        if ($('#txtNoiNhan').val() === '')
-        {
-            alert('Nơi nhận không được để trống');
-            return  false;
-        }
-        if ($('#thoiGianNhan').val() === '')
-        {
-            alert('Thời gian nhận không được để trống');
-            return  false;
-        }
-    }
-
-
 </script>
 @endsection

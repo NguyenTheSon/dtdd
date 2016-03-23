@@ -1,5 +1,5 @@
 @extends('admin.thongke')    
-@section('title','Thống kê bán của từng hãng.')
+@section('title','Thống kê doanh thu.')
 @section('css')
 <link href="{!! URL('public/flot/examples/examples.css')!!}" rel="stylesheet" type="text/css">
         <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <form action="{{route('admin.thongke.tungHang')}}" method="get">
+                <form action="{{route('admin.thongke.banChay')}}" method="get">
                     <input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
                     <div class="form-group">
                         <label>Từ ngày</label>
@@ -42,7 +42,7 @@
                     <button type="submit" class="btn btn-primary">Thống kê</button>
                 </form>
                 <h1>Chọn ngày bên dưới để in sản phẩm bán chạy</h1>
-                <form action="{{route('admin.thongke.inTungHang')}}" method="get">
+                <form action="{{route('admin.thongke.inBanChay')}}" method="get">
                     <input type="hidden" name="_token" value="{!!csrf_token()!!}"/>
                     <div class="form-group">
                         <label>Từ ngày</label>
@@ -63,8 +63,8 @@
 <script>
 $(function () {
 
-    var data = <?php echo '[' . $data . ']' ?>;
-
+    var data = <?php echo '['.$data.']'?>;
+    
 
     $.plot("#placeholder", [data], {
         series: {

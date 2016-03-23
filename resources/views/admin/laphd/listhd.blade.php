@@ -3,8 +3,7 @@
     <thead>
         <tr align="center">
             <th>STT</th>
-            <th>Mẫ hóa đơn</th>
-            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
             <th>số lượng</th>
             <th>giá</th>
             <th>Thành tiền</th>
@@ -16,11 +15,10 @@
         <?php $i++ ?>
         <tr class="odd gradeX" align="center">
             <td>{!!$i!!}</td>
-            <td>{!!$product["mahd"]!!}</td>
-            <td>{!!$product["masp"]!!}</td>
+            <td>{!!$product["tensp"]!!}</td>
             <td>{!!$product["soluong"]!!}</td>
-            <td>{!!$product["dongia"]!!}</td>
-            <td>{!!$product["soluong"]*$product["dongia"]!!}</td>
+            <td>{!!number_format($product["dongia"])!!}</td>
+            <td>{!!number_format($product["soluong"]*$product["dongia"])!!}</td>
             @endforeach
     </tbody>
 </table>

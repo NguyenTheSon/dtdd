@@ -156,7 +156,7 @@
                                         <a href="{!!URL::route('admin.thongke.doanhThu')!!}">Doanh thu</a>
                                     </li>
                                     <li>
-                                        <a href="{!!URL::route('admin.thongke.banChayTrongThang')!!}">Sản phẩm bán chạy</a>
+                                        <a href="{!!URL::route('admin.thongke.banChay')!!}">Sản phẩm bán chạy</a>
                                     </li>
                                     <li>
                                         <a href="{!!URL::route('admin.thongke.tungHang')!!}">Sản phẩm bán của các hãng</a>

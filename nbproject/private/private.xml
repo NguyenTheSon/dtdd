@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>resources/views/user/pages/cart.blade.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>51</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/HomeController.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/thongke/inthongke.blade.php</file>
             <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/ProductController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/FaceController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/product/list.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/product/list.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/product/add.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/thongke/doanhthu.blade.php</file>
         </group>
     </open-files>
 </project-private>

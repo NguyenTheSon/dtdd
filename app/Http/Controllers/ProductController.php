@@ -18,14 +18,32 @@ use DB;
 
 class ProductController extends Controller {
 
-    public function getList() {
-        $product = DB::table('sanpham')
-                        ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
-                        ->select('sanpham.*', 'loaisp.name')
-                        ->get();
-        $products =  (array) $product;
-   
-        return view('admin.product.list', compact('products'));
+    public function getList(Request $request) {
+        $name   = Request::input('tensp');
+        $maloai = Request::input('select_masp');
+        var_dump($maloai, $name);
+        $cate   = LoaiSP::select()->get()->toArray();
+        if ($name != "" && $maloai == 0) {
+            $products = DB::table('sanpham')
+                    ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
+                    ->select('sanpham.*', 'loaisp.name as tenloai')
+                    ->where('sanpham.name', 'like', '%' . $name . '%')
+                    ->get();
+        } else if ($name == "" && $maloai != 0) {
+            $products = DB::table('sanpham')
+                    ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
+                    ->select('sanpham.*', 'loaisp.name as tenloai')
+                    ->where('loaisp.id', $maloai)
+                    ->get();
+        } else if ($name != "" && $maloai != 0) {
+            $products = DB::table('sanpham')
+                    ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
+                    ->select('sanpham.*', 'loaisp.name as tenloai')
+                    ->where('sanpham.name', 'like', '%' . $name . '%')
+                    ->where('loaisp.id', $maloai)
+                    ->get();
+        }
+        return view('admin.product.list', compact('products', 'cate','name','maloai'));
     }
 
     public function getAdd() {
