@@ -21,7 +21,6 @@ class ProductController extends Controller {
     public function getList(Request $request) {
         $name   = Request::input('tensp');
         $maloai = Request::input('select_masp');
-        var_dump($maloai, $name);
         $cate   = LoaiSP::select()->get()->toArray();
         if ($name != "" && $maloai == 0) {
             $products = DB::table('sanpham')
@@ -42,8 +41,13 @@ class ProductController extends Controller {
                     ->where('sanpham.name', 'like', '%' . $name . '%')
                     ->where('loaisp.id', $maloai)
                     ->get();
+        } else {
+            $products = DB::table('sanpham')
+                    ->join('loaisp', 'loaisp.id', '=', 'sanpham.maloai')
+                    ->select('sanpham.*', 'loaisp.name as tenloai')
+                    ->get();
         }
-        return view('admin.product.list', compact('products', 'cate','name','maloai'));
+        return view('admin.product.list', compact('products', 'cate', 'name', 'maloai'));
     }
 
     public function getAdd() {
