@@ -12,12 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/thongke/inthongke.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/home.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/ProductController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/product/list.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/product/add.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/thongke/doanhthu.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/product/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/app.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/product/list.blade.php</file>
         </group>
     </open-files>
 </project-private>
