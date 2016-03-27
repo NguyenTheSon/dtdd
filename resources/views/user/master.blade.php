@@ -19,7 +19,13 @@
                             <div class="topheader-inner w1020px marginauto">
                                 <ul class="pull-right">
                                     <li>
-                                        <input type="text" name="tensp" style="width: 130px; height: 20px; margin-top: -3px" placeholder="Tìm kiếm" /><li><a href="#" style="width: 60px; height: 20px; margin-top: -9px; margin-left: -20px;" class="btn btn-info">Search</a></li>
+                                        <form method="get" action="{{route('getListProduct')}}">
+                                            <input type="text" value="{{isset($key)? $key :null}}" name="name" style="width: 130px; height: 20px; margin-top: -3px" placeholder="Tìm kiếm" />
+                                    </li>
+                                    <li>
+                                        <button type="submit" style="width: 60px; height: 20px; margin-top: -9px; margin-left: -20px;" class="btn btn-info">Search</button>
+                                    </li>
+                                    </form>
                                     </li>
                                     <li><a href="#">Điều khoản</a></li>
 
@@ -51,8 +57,8 @@
                                         <li><a href="{!!route('getListProduct')!!}">Điện thoại</a></li>
                                         <li><a href="{{route('phuKien')}}">Phụ kiện </a></li>
                                         <li><a href="{{route('getPrice')}}">Báo giá </a></li>
-                                        <li><a href="#">Tin tức </a></li>
-                                        <li><a href="#">Giới thiệu</a></li>
+                                        <li><a href="{{url('/tin-tuc')}}">Tin tức </a></li>
+                                        <li><a href="{{url('/gioi-thieu')}}">Giới thiệu</a></li>
                                         <li><a href="{{route('hoTroMuaHang')}}">Hỗ trợ mua hàng</a></li>
                                         <li><a href="{!!route('gioHang')!!}">Giỏ hàng</a></li>
                                     </ul>
@@ -116,7 +122,7 @@
                                 </div>
                             </div>
                             <script src="{!!asset('public/user/js/bootraps/bootstrap.min.js')!!}"></script>
-							 <script type='text/javascript'>window._sbzq || function (e) {
+                            <script type='text/javascript'>window._sbzq || function (e) {
     e._sbzq = [];
     var t = e._sbzq;
     t.push(["_setAccount", 38268]);

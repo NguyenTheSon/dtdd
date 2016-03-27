@@ -25,7 +25,7 @@
         <script src="{!! URL('public/admin/js/ckeditor/ckeditor.js')!!}"></script>
         <script src="{!! URL('public/admin/js/ckfinder/ckfinder.js')!!}"></script>
         <script>
-            var baseURL = "{!! URL('/')!!}";        
+	    var baseURL = "{!! URL('/')!!}";
         </script>
         <script src="{!! URL('public/admin/js/func_ckfinder.js')!!}"></script>
     </head>
@@ -121,6 +121,18 @@
                                     </li>
                                     <li>
                                         <a href="{!!URL::route('admin.phukien.getAdd')!!}">Thêm</a>
+                                    </li> 
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+			    <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Quản lý tin tức<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{!!URL::route('admin.tintuc.list')!!}">Danh sách</a>
+                                    </li>
+                                    <li>
+                                        <a href="{!!URL::route('admin.tintuc.getAdd')!!}">Thêm</a>
                                     </li> 
                                 </ul>
                                 <!-- /.nav-second-level -->

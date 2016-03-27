@@ -17,8 +17,8 @@
                             <label>Tên sản phẩm</label>
                             <input type="text"  name="tensp" value="{{$name}}" placeholder="Nhập tên sp" />
                             <label>Tên loại sản phẩm</label>
-                            <select name="select_masp">
-                                <option value="0">Chọn tên loại sản phẩm</option>
+                            <select name="select_masp" style="height: 26px;">
+                                <option value="0">--Tên loại sản phẩm--</option>
                                 <?php select($cate, $maloai) ?>
                             </select>
                             <button type="submit" class=" btn-primary">Tìm kiếm</button>

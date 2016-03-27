@@ -12,12 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/HomeController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/ProductController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/product/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/app.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/product/list.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/user/pages/baogia.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/list.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/WelcomeController.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/user/pages/tintuc.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/cate/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/TinTucController.php</file>
+            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/add.blade.php</file>
         </group>
     </open-files>
 </project-private>

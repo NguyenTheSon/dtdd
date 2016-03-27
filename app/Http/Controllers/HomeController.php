@@ -41,12 +41,17 @@ class HomeController extends Controller {
     }
 
     public function getListProduct() {
-        $products = SanPham::select()->orderBy('id', 'desc')->paginate(12);
-        return view('user.pages.product', compact('products'));
+        $key = Request::input('name');
+        if ($key != "") {
+            $products = SanPham::select()->orderBy('id', 'desc')->where('name', 'like', '%' . $key . '%')->paginate(12);
+        } else {
+            $products = SanPham::select()->orderBy('id', 'desc')->paginate(12);
+        }
+        return view('user.pages.product', compact('products','key'));
     }
 
     public function getPrice() {
-        $products = SanPham::select()->orderBy('id', 'desc')->paginate(10);
+        $products = SanPham::select()->orderBy('id', 'desc')->paginate(20);
         return view('user.pages.baogia', compact('products'));
     }
 
