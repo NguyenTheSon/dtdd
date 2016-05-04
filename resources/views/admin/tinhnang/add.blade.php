@@ -24,41 +24,55 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Kích thước - khối lượng</label>
-                            <textarea class="form-control" name="txtKichThuoc"  >{!!old('txtKichThuoc')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtKichThuoc")</script>
+                            <label>Màn hình</label>
+                            <textarea class="form-control" name="txtManhinh"  >{!!old('txtManhinh')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtManhinh")</script>
                         </div>
                         <div class="form-group">
-                            <label>Màn hình-hiển thị</label>
-                            <textarea class="form-control" name="txtManHinh">{!!old('txtManHinh')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtManHinh")</script>
+                            <label>Camera sau</label>
+                            <textarea class="form-control" name="txtCamera_sau">{!!old('txtCamera_sau')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtCamera_sau")</script>
                         </div>
                         <div class="form-group">
-                            <label>Lưu trữ - bộ nhớ</label>
-                            <textarea class="form-control" name="txtLuuTru" >{!!old('txtLuuTru')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtLuuTru")</script>
+                            <label>Camera trước</label>
+                            <textarea class="form-control" name="txtCamera_truoc" >{!!old('txtCamera_truoc')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtCamera_truoc")</script>
                         </div>
                         <div class="form-group">
-                            <label>Dữ liệu - Kết nối</label>
-                            <textarea class="form-control" name="txtDuLieu" >{!!old('txtDuLieu')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtDuLieu")</script>
+                            <label>Hệ điều hành - CPU</label>
+                            <textarea class="form-control" name="txtHedieuhanh_CPU" >{!!old('txtHedieuhanh_CPU')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtHedieuhanh_CPU")</script>
                         </div>
                         <div class="form-group">
-                            <label>Ứng dung - Trò chơi</label>
-                            <textarea class="form-control" name="txtUngDung" >{!!old('txtUngdung')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtUngDung")</script>
+                            <label>Bộ nhớ - Lưu trữ</label>
+                            <textarea class="form-control" name="txtBonho_Luutru" >{!!old('txtBonho_Luutru')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtBonho_Luutru")</script>
                         </div>
                         <div class="form-group">
-                            <label>Nguồn</label>
-                            <textarea class="form-control" name="txtNguon"  >{!!old('txtNguon')!!}</textarea>
-                            <script type="text/javascript">ckeditor("txtNguon")</script>
+                            <label>Kết nối</label>
+                            <textarea class="form-control" name="txtKetnoi"  >{!!old('txtKetnoi')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtKetnoi")</script>
+                        </div>
+                        <div class="form-group">
+                            <label>Thiết kế -Trọng lượng</label>
+                            <textarea class="form-control" name="txtThietke_Trongluong"  >{!!old('txtThietke_Trongluong')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtThietke_Trongluong")</script>
+                        </div>
+                        <div class="form-group">
+                            <label>Thông tin Pin</label>
+                            <textarea class="form-control" name="txtThongtinpin"  >{!!old('txtThongtinpin')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtThongtinpin")</script>
+                        </div>
+                        <div class="form-group">
+                            <label>Giải trí - Ứng dụng</label>
+                            <textarea class="form-control" name="txtGiaitri_Ungdung"  >{!!old('txtGiaitri_Ungdung')!!}</textarea>
+                            <script type="text/javascript">ckeditor("txtGiaitri_Ungdung")</script>
                         </div>
                         <button type="submit" class="btn btn-primary">Thêm Mới</button>
                         <a class="btn btn-warning" href="{!!URL::route('admin.tinhnang.list')!!}">Hủy bỏ</a></td>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                 </div>  
-
             </div>
         </div>
         <!-- /.row -->

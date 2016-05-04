@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AnhSP extends Model {
 
     protected $table = "anhsp";
-    protected $fillable = ['id', 'masp', 'anh'];
+    protected $fillable = ['id', 'san_pham_id', 'anh'];
     public $timestamps = false;
 
 }

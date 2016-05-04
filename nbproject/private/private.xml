@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>resources/views/user/pages/cart.blade.php</url>
-            <bookmark id="1">
-                <name/>
-                <line>51</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/user/pages/baogia.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/list.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/WelcomeController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/user/pages/tintuc.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/cate/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/app/Http/Controllers/TinTucController.php</file>
-            <file>file:/C:/xampp/htdocs/dacn/resources/views/admin/tintuc/add.blade.php</file>
+            <file>file:/D:/Xampp/htdocs/dtdd/app/Http/Controllers/WelcomeController.php</file>
+            <file>file:/D:/Xampp/htdocs/dtdd/resources/views/user/pages/hotro.blade.php</file>
+            <file>file:/D:/Xampp/htdocs/dtdd/resources/views/user/pages/goiy.blade.php</file>
         </group>
     </open-files>
 </project-private>

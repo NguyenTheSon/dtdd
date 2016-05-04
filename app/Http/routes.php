@@ -120,8 +120,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@getHome']);
-Route::get('phu-kien', ['as' => 'phuKien', 'uses' => 'HomeController@phuKien']);
-Route::get('bao-gia', ['as' => 'getPrice', 'uses' => 'HomeController@getPrice']);
 Route::get('product-cart', ['as' => 'getCart', 'uses' => 'HomeController@getCart']);
 Route::get('listproduct', ['as' => 'getListProduct', 'uses' => 'HomeController@getListProduct']);
 Route::group(['prefix' => 'product'], function () {
@@ -130,7 +128,7 @@ Route::group(['prefix' => 'product'], function () {
 Route::get('product-deltail/{id}', ['as' => 'getProductDetail', 'uses' => 'HomeController@getProductDetail']);
 Route::get('mua-hang/{id}', ['as' => 'muaHang', 'uses' => 'HomeController@muaHang']);
 Route::get('gio-hang', ['as' => 'gioHang', 'uses' => 'HomeController@gioHang']);
-Route::get('xao-san-pham/{id}', ['as' => 'xoaSP', 'uses' => 'HomeController@xoaSP']);
+Route::get('xoa-san-pham/{id}', ['as' => 'xoaSP', 'uses' => 'HomeController@xoaSP']);
 Route::post('cap-nhat-gio-hang/{id}', ['as' => 'updateGioHang', 'uses' => 'HomeController@updateGioHang']);
 Route::post('lap-phieu-dat-hang', ['as' => 'phieuDatHang', 'uses' => 'HomeController@phieuDatHang']);
 Route::get('so-sanh', ['as' => 'getSoSanh', 'uses' => 'HomeController@getSoSanh']);
@@ -139,6 +137,7 @@ Route::get('thanh-toan-truc-tiep', ['as' => 'thanhToanTrucTiep', 'uses' => 'Home
 
 //wellcome controller
 Route::get('ho-tro-mua-hang', ['as' => 'hoTroMuaHang', 'uses' => 'WelcomeController@hoTroMuaHang']);
+Route::get('search', ['as' => 'search', 'uses' => 'WelcomeController@getList']);
 Route::post('danh-sach-goi-y', ['as' => 'supportSales', 'uses' => 'WelcomeController@supportSales']);
 Route::get('facebook-login', ['as' => 'facebooklogin', 'uses' => 'FaceController@redirectToProvider']);
 Route::get('facebook-login-callbak', ['as' => 'facebooklogin', 'uses' => 'FaceController@handleProviderCallback']);
@@ -147,4 +146,6 @@ Route::get('tien-hanh-thanh-toan', ['as' => 'tienHanhThanhToan', 'uses' => 'Welc
 Route::get('thanh-toan-thanh-cong', ['as' => 'thanhToanThanhCong', 'uses' => 'WelcomeController@thanhToanThanhCong']);
 Route::get('tin-tuc', ['as' => 'tinTuc', 'uses' => 'WelcomeController@tinTuc']);
 Route::get('gioi-thieu', ['as' => 'gioiThieu', 'uses' => 'WelcomeController@gioiThieu']);
+Route::get('chinh-sach-bao-hanh', ['as' => 'gioiThieu', 'uses' => 'WelcomeController@baoHanh']);
+Route::get('khuyen-mai', ['as' => 'gioiThieu', 'uses' => 'WelcomeController@khuyenMai']);
 Route::get('chi-tiet-tin/{id}', ['as' => 'chiTietTin', 'uses' => 'WelcomeController@chiTietTin']);

@@ -30,11 +30,11 @@
                         </div>
                         <div class="form-group">
                             <label>Số lượng</label>
-                            <input type="text" class="form-control" name="txtSoLuong" value="{!! old('txtPhuKien',isset($phukien)?$phukien['tenpk']:'')!!}" placeholder="Nhập số lượng" />
+                            <input type="text" class="form-control" name="txtSoLuong" value="{!! old('txtPhuKien',isset($phukien)?$phukien['soluong']:'')!!}" placeholder="Nhập số lượng" />
                         </div>
                         <div class="form-group">
                             <label>Giá</label>
-                            <input type="text" class="form-control" name="txtGia" value="{!! old('txtPhuKien',isset($phukien)?$phukien['tenpk']:'')!!}" placeholder="Nhập giá bán" />
+                            <input type="text" class="form-control" name="txtGia" value="{!! old('txtGia',isset($phukien)?$phukien['gia']:'')!!}" placeholder="Nhập giá bán" />
                         </div>
                         <div class="form-group">
                             <label>Ảnh hiện tại</label><br/>

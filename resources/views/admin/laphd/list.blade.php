@@ -53,7 +53,7 @@
                     </tr>
                 <script>
                     $("#show_click{!!$product['id']!!}").click(function () {
-                        var url = "http://localhost:81/dacn/admin/laphd/show";
+                        var url = "http://localhost:/dtdd/admin/laphd/show";
                                 var idSP = {!!$product['id']!!};
                         $.ajax({
                             url: url,

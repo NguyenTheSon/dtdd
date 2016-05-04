@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SanPham extends Model {
 
-    protected $table    = "sanpham";
-    protected $fillable = ['id', 'maloai', 'name', 'sanxuat', 'baohanh', 'mau', 'gia', 'soluong', 'trangthai', 'anh'];
-    public $timestamps  = false;
+    protected $table = "sanpham";
+    protected $fillable = ['id', 'name', 'sanxuat', 'baohanh', 'mau', 'gia', 'soluong', 'anh', 'trang_thai', 'mo_ta','soluong', 'maloai'];
+    public $timestamps = false;
 
     public function images() {
         return $this->hasMany('App\AnhSP');
@@ -29,7 +29,7 @@ class SanPham extends Model {
                 $b = '8000000';
             } elseif ($fillter['Prices'] === '4') {
                 $a = '8000000';
-                $b = '100000000';
+                $b = '20000000';
             }
         }
         $hang  = $fillter['hang'];

@@ -64,7 +64,8 @@ class ProductController extends Controller {
         $product->baohanh    = $request->txtThoiGianBH;
         $product->sanxuat    = $request->txtXuatSu;
         $product->mau        = $request->txtMau;
-        $product->soluong    = 0;
+        $product->mo_ta      = $request->txtMota;
+        $product->soluong    = $request->txtSoluong;
         $product->anh        = $fileName;
         $product->trang_thai = $request->txtTrangThai;
         $product->maloai     = $request->select_masp;
@@ -113,8 +114,10 @@ class ProductController extends Controller {
         $product->baohanh    = Request::input('txtThoiGianBH');
         $product->sanxuat    = Request::input('txtXuatSu');
         $product->mau        = Request::input('txtMau');
-        $product->soluong    = $product['soluong'];
+        $product->mo_ta      = Request::input('txtMota');
+        $product->soluong    = Request::input('txtSoluong');
         // $product->anh = $fileName;
+        $product->soluong    = Request::input('txtSoluong');
         $product->trang_thai = Request::input('txtTrangThai');
         $product->maloai     = Request::input('select_masp');
         $img_curent          = 'resources/upload/' . Request::input('img_current');

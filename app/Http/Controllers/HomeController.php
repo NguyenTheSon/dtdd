@@ -7,6 +7,8 @@ use App\CTHoaDon;
 use App\SanPham;
 use App\PhuKien;
 use DB;
+use App\AnhSP;
+use App\LoaiSP;
 use Cart;
 use App\Http\Requests\DatHangRequest;
 
@@ -17,27 +19,29 @@ class HomeController extends Controller {
 //    }
 
     public function index() {
-        $sanPham  = CTHoaDon::select(DB::raw('sum(soluong) AS total'), 'masp')->groupBy('masp')->orderBy('total', 'desc')->get()->toArray();
+        $sanPham = CTHoaDon::select(DB::raw('sum(soluong) AS total'), 'masp')->groupBy('masp')->orderBy('total', 'desc')->get()->toArray();
         $arr_masp = array();
         foreach ($sanPham as $value) {
             $arr_masp[] = $value['masp'];
         }
-        $sanPhamBanChay = SanPham::whereIn('id', $arr_masp)->skip(0)->take(6)->get()->toArray();
-        $sanPhamMoi     = SanPham::select()->skip(0)->take(6)->orderBy('id', 'desc')->get()->toArray();
-        $phuKien        = PhuKien::select()->skip(0)->take(3)->orderBy('id', 'desc')->get()->toArray();
-        return view('user.pages.index', compact('sanPhamMoi', 'sanPhamBanChay', 'phuKien'));
+        $sanPhamBanChay = SanPham::whereIn('id', $arr_masp)->skip(0)->take(4)->get()->toArray();
+        $sanPhamMoi = SanPham::select()->skip(0)->take(4)->orderBy('id', 'desc')->get()->toArray();
+        $sanPhamNoiBat = SanPham::select()->skip(0)->take(4)->orderBy('id', 'desc')->get()->toArray();
+        $phuKien = PhuKien::select()->skip(0)->take(3)->orderBy('id', 'desc')->get()->toArray();
+        return view('user.pages.index', compact('sanPhamMoi', 'sanPhamBanChay', 'sanPhamNoiBat', 'phuKien'));
     }
 
     public function getHome() {
-        $sanPham  = CTHoaDon::select(DB::raw('sum(soluong) AS total'), 'masp')->groupBy('masp')->orderBy('total', 'desc')->get()->toArray();
+        $sanPham = CTHoaDon::select(DB::raw('sum(soluong) AS total'), 'masp')->groupBy('masp')->orderBy('total', 'desc')->get()->toArray();
         $arr_masp = array();
         foreach ($sanPham as $value) {
             $arr_masp[] = $value['masp'];
         }
-        $sanPhamBanChay = SanPham::whereIn('id', $arr_masp)->skip(0)->take(6)->get()->toArray();
-        $sanPhamMoi     = SanPham::select()->skip(0)->take(6)->orderBy('id', 'desc')->get()->toArray();
-        $phuKien        = PhuKien::select()->skip(0)->take(3)->orderBy('id', 'desc')->get()->toArray();
-        return view('user.pages.index', compact('sanPhamMoi', 'sanPhamBanChay', 'phuKien'));
+        $sanPhamBanChay = SanPham::whereIn('id', $arr_masp)->skip(0)->take(4)->get()->toArray();
+        $sanPhamMoi = SanPham::select()->skip(0)->take(4)->orderBy('id', 'desc')->get()->toArray();
+        $sanPhamNoiBat = SanPham::select()->skip(0)->take(4)->orderBy('id', 'desc')->get()->toArray();
+        $phuKien = PhuKien::select()->skip(0)->take(3)->orderBy('id', 'desc')->get()->toArray();
+        return view('user.pages.index', compact('sanPhamMoi', 'sanPhamBanChay', 'sanPhamNoiBat', 'phuKien'));
     }
 
     public function getListProduct() {
@@ -47,41 +51,31 @@ class HomeController extends Controller {
         } else {
             $products = SanPham::select()->orderBy('id', 'desc')->paginate(12);
         }
-        return view('user.pages.product', compact('products','key'));
-    }
-
-    public function getPrice() {
-        $products = SanPham::select()->orderBy('id', 'desc')->paginate(20);
-        return view('user.pages.baogia', compact('products'));
-    }
-
-    public function phuKien() {
-        $phuKiens = PhuKien::select()->orderBy('id', 'desc')->paginate(12);
-        return view('user.pages.phukien', compact('phuKiens'));
+        return view('user.pages.product', compact('products', 'key'));
     }
 
     public function getListCate($id) {
-        $products = SanPham::where('maloai', $id)->orderBy('id', 'desc')->paginate(12);
-        return view('user.pages.cate', compact('products'));
+        $idcate = LoaiSP::where('id', $id)->pluck('name');
+        $menu = DB::table('loaisp')->orderBy('thutu')->get();
+        $sanPhamMoi = SanPham::select()->skip(0)->take(4)->orderBy('id', 'desc')->get()->toArray();
+        $products = SanPham::where('maloai', $id)->orderBy('id', 'desc')->paginate(3);
+        return view('user.pages.cate', compact('products', 'idcate', 'menu', 'sanPhamMoi'));
     }
 
     public function getSoSanh() {
         if (Request::ajax()) {
-            $id       = (int) Request::get('da');
+            $id = (int) Request::get('da');
             $tinhNang = \App\TinhNang::where('masp', '=', $id)->get()->first();
             return view('user.pages.cungloai', compact('tinhNang'));
         }
     }
 
     public function getProductDetail($id) {
-        $select   = SanPham::select()->get()->toArray();
-        $product  = SanPham::where('id', '=', $id)->get()->first();
-        $img      = \App\AnhSP::where('san_pham_id', '=', $id)->get()->toArray();
-        $maLoai   = $product->maloai;
-        $phuKien  = PhuKien::where('masp', '=', $id)->get()->toArray();
-        $cungLoai = SanPham::where('maloai', '=', $maLoai)->where('id', '<>', $id)->get()->toArray();
+        $product = SanPham::where('id', '=', $id)->get()->first();
+        $tenLoai = LoaiSP::where('id', $product->maloai)->pluck('name');
         $tinhNang = \App\TinhNang::where('masp', '=', $id)->get()->first();
-        return view('user.pages.detail', compact('product', 'img', 'cungLoai', 'phuKien', 'tinhNang', 'select'));
+        $img = AnhSP::where('san_pham_id', '=', $id)->get();
+        return view('user.pages.detail', compact('product', 'tenLoai', 'tinhNang', 'img'));
     }
 
     public function getCart() {
@@ -90,8 +84,14 @@ class HomeController extends Controller {
     }
 
     public function muaHang($id) {
+        $qty = Request::input('quantity');
+        if ($qty == null) {
+            $qty = 1;
+        } else {
+            $qty = Request::input('quantity');
+        }
         $product_buy = SanPham::find($id);
-        Cart::add(array('id' => $id, 'name' => $product_buy->name, 'qty' => 1, 'price' => $product_buy->gia));
+        Cart::add(array('id' => $id, 'name' => $product_buy->name, 'qty' => $qty, 'price' => $product_buy->gia, 'options' => array('image' => $product_buy->anh)));
         return redirect()->route('gioHang');
     }
 
@@ -100,13 +100,17 @@ class HomeController extends Controller {
         return view('user.pages.cart', compact('content'));
     }
 
+    public function getImage($id) {
+        return SanPham::where('id', '=', $id)->pluck('anh');
+    }
+
     public function xoaSP($id) {
         Cart::remove($id);
         return redirect()->route('gioHang');
     }
 
     public function updateGioHang($id) {
-        $qty = Request::input('qty');
+        $qty = Request::input('quantity');
         Cart::update($id, $qty);
         return redirect()->route('gioHang');
     }
@@ -114,35 +118,35 @@ class HomeController extends Controller {
     public function phieuDatHang(DatHangRequest $request) {
         if (Cart::count() === 0) {
             echo '<script> alert("Đặt hàng không thành công! Bạn chưa chọn sản phẩm")</script>';
-            header("refresh:1;url=http://localhost:81/dacn/gio-hang");
+            header("refresh:1;url=http://localhost:/dtdd/gio-hang");
         } else {
-            $now               = date('Y-m-d', time());
-            $hoaDon            = new \App\DatHang();
-            $hoaDon->ngaylap   = $now;
-            $hoaDon->manv      = 5;
-            $hoaDon->ten_kh    = $request->txtTenKhachHang;
-            $hoaDon->diachi    = $request->txtDiaChi;
-            $hoaDon->sdt       = $request->txtSoDT;
-            $hoaDon->noinhan   = $request->txtNoiNhan;
-            $hoaDon->tgnhan    = $request->txtThoiGianNhan;
+            $now = date('Y-m-d', time());
+            $hoaDon = new \App\DatHang();
+            $hoaDon->ngaylap = $now;
+            $hoaDon->manv = 5;
+            $hoaDon->ten_kh = $request->txtTenKhachHang;
+            $hoaDon->diachi = $request->txtDiaChi;
+            $hoaDon->sdt = $request->txtSoDT;
+            $hoaDon->noinhan = $request->txtNoiNhan;
+            $hoaDon->tgnhan = $request->txtThoiGianNhan;
             $hoaDon->trangthai = "Đặt hàng tại webstite";
             $hoaDon->save();
-            $maHD              = \App\DatHang::max('id');
-            $content           = Cart::content();
+            $maHD = \App\DatHang::max('id');
+            $content = Cart::content();
             foreach ($content as $item) {
-                $ctHoaDon          = new CTHoaDon();
-                $ctHoaDon->mahd    = $maHD;
-                $ctHoaDon->masp    = $item['id'];
+                $ctHoaDon = new CTHoaDon();
+                $ctHoaDon->mahd = $maHD;
+                $ctHoaDon->masp = $item['id'];
                 $ctHoaDon->soluong = $item['qty'];
-                $ctHoaDon->dongia  = $item['price'];
-                $ctHoaDon->tensp   = $item['name'];
+                $ctHoaDon->dongia = $item['price'];
+                $ctHoaDon->tensp = $item['name'];
                 $ctHoaDon->save();
-                $soLuong           = SanPham::find($item['id']);
-                $soLuong->soluong  = $soLuong['soluong'] - $item['qty'];
+                $soLuong = SanPham::find($item['id']);
+                $soLuong->soluong = $soLuong['soluong'] - $item['qty'];
                 $soLuong->save();
             }
             echo '<script> alert("Đặt hàng thành công! chúng tỗi sẽ liên hệ với bạn!")</script>';
-            header("refresh:1;url=http://localhost:81/dacn/hinh-thuc-thanh-toan");
+            header("refresh:1;url=http://localhost:/dtdd/hinh-thuc-thanh-toan");
         }
     }
 
@@ -153,7 +157,7 @@ class HomeController extends Controller {
     public function thanhToanTrucTiep() {
         Cart::destroy();
         echo '<script> alert("Chúng tỗi sẽ liên hệ với bạn! Xin Cảm ơn")</script>';
-        header("refresh:1;url=http://localhost:81/dacn");
+        header("refresh:1;url=http://localhost:/dtdd");
     }
 
 }

@@ -28,7 +28,7 @@
 </tr>
 <script>
     $("#btn_xoa_click{!!$product['id']!!}").click(function () {
-        var url = "http://localhost:81/dacn/admin/lappn/delete";
+        var url = "http://localhost:/dtdd/admin/lappn/delete";
         var _token = $("form[name='frm_lapSP']").find("input[name='_token']").val();
                 var idSP = {!!$product['id']!!};
         $.ajax({

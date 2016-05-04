@@ -36,8 +36,12 @@
                                 <input type="text" class="form-control" name="txtGiaBan" value="{!!old('txtGiaBan',isset($product)?$product['gia']:null)!!}" placeholder="Nhập giá bán" />
                             </div>
                             <div class="form-group">
+                                <label>Số lượng</label>
+                                <input type="text" class="form-control" name="txtSoluong" value="{!!old('txtSoluong',isset($product)?$product['soluong']:null)!!}" placeholder="Nhập số lượng" />
+                            </div>
+                            <div class="form-group">
                                 <label>Thời gian bảo hành</label>
-                                <input type="text" class="form-control" name="txtThoiGianBH" placeholder="Nhập thời gian bảo hành" value="{!!old('txtGiaBan',isset($product)?$product['gia']:null)!!}" />
+                                <input type="text" class="form-control" name="txtThoiGianBH" placeholder="Nhập thời gian bảo hành" value="{!!old('txtThoiGianBH',isset($product)?$product['baohanh']:null)!!}" />
                             </div>
                             <div class="form-group">
                                 <label>Xuất sứ</label>
@@ -46,6 +50,10 @@
                             <div class="form-group">
                                 <label>Màu</label>
                                 <input type="text" class="form-control" name="txtMau" placeholder="Nhập màu sản phẩm" value="{!!old('txtMau',isset($product)?$product['mau']:null)!!}" />
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea type="text" class="form-control" name="txtMota" placeholder="Nhập mô tả sản phẩm" value="{!!old('txtMota',isset($product)?$product['mo_ta']:null)!!}" ></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái</label>
